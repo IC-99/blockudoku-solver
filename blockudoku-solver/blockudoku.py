@@ -12,6 +12,7 @@ class Blockudoku:
             self.board = numpy.ndarray(board)
         
         self.piece_set = PieceSets(type='normal')
+        self.piece_set.print()
 
     def print_board(self):
         print(self.board)

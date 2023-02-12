@@ -128,17 +128,45 @@ class PieceSets:
         p26[2][2] = 0
         self.pieces.append(p26)
 
-        p27 = numpy.ones((1, 4), int)
+        p27 = numpy.ones((3, 3), int)
+        p27[0][0] = 0
+        p27[0][1] = 0
+        p27[2][0] = 0
+        p27[2][1] = 0
         self.pieces.append(p27)
 
-        p28 = numpy.ones((4, 1), int)
+        p28 = numpy.ones((3, 3), int)
+        p28[0][1] = 0
+        p28[0][2] = 0
+        p28[2][1] = 0
+        p28[2][2] = 0
         self.pieces.append(p28)
 
-        p29 = numpy.ones((1, 5), int)
+        p29 = numpy.ones((3, 3), int)
+        p29[0][0] = 0
+        p29[0][2] = 0
+        p29[1][0] = 0
+        p29[1][2] = 0
         self.pieces.append(p29)
 
-        p30 = numpy.ones((5, 1), int)
+        p30 = numpy.ones((3, 3), int)
+        p30[1][0] = 0
+        p30[1][2] = 0
+        p30[2][0] = 0
+        p30[2][2] = 0
         self.pieces.append(p30)
+
+        p31 = numpy.ones((1, 4), int)
+        self.pieces.append(p31)
+
+        p32 = numpy.ones((4, 1), int)
+        self.pieces.append(p32)
+
+        p33 = numpy.ones((1, 5), int)
+        self.pieces.append(p33)
+
+        p34 = numpy.ones((5, 1), int)
+        self.pieces.append(p34)
 
         if type == 'plus':
             # add other pieces
