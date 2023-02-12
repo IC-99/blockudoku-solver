@@ -12,7 +12,6 @@ class Blockudoku:
             self.board = numpy.ndarray(board)
         
         self.piece_set = PieceSets(type='normal')
-        self.piece_set.print()
 
     def print_board(self):
         print(self.board)
@@ -38,8 +37,8 @@ class Blockudoku:
                     self.board[start_i + i][start_j + j] = 1
         
     def check(self):
-        rows = [0, 0, 0, 0, 0, 0, 0, 0, 0]
-        cols = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+        rows =    [0, 0, 0, 0, 0, 0, 0, 0, 0]
+        cols =    [0, 0, 0, 0, 0, 0, 0, 0, 0]
         squares = [0, 0, 0, 0, 0, 0, 0, 0, 0]
         
         for i in range(9):
@@ -65,8 +64,6 @@ class Blockudoku:
         if squares[6] == 9: self.board[6:9][0:3] = 0
         if squares[7] == 9: self.board[6:9][3:6] = 0
         if squares[8] == 9: self.board[6:9][6:9] = 0
-
-
 
 if __name__ == "__main__":
     blockudoku = Blockudoku()
