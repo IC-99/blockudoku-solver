@@ -100,73 +100,93 @@ class PieceSets:
         p22[1][2] = 0
         self.pieces.append(p22)
 
-        p23 = numpy.ones((3, 3), int)
+        p23 = numpy.ones((3, 2), int)
         p23[0][0] = 0
-        p23[0][1] = 0
-        p23[1][0] = 0
-        p23[1][1] = 0
+        p23[2][1] = 0
         self.pieces.append(p23)
 
-        p24 = numpy.ones((3, 3), int)
+        p24 = numpy.ones((3, 2), int)
         p24[0][1] = 0
-        p24[0][2] = 0
-        p24[1][1] = 0
-        p24[1][2] = 0
+        p24[2][0] = 0
         self.pieces.append(p24)
 
-        p25 = numpy.ones((3, 3), int)
-        p25[1][0] = 0
-        p25[1][1] = 0
-        p25[2][0] = 0
-        p25[2][1] = 0
+        p25 = numpy.ones((2, 3), int)
+        p25[0][0] = 0
+        p25[1][2] = 0
         self.pieces.append(p25)
 
-        p26 = numpy.ones((3, 3), int)
-        p26[1][1] = 0
-        p26[1][2] = 0
-        p26[2][1] = 0
-        p26[2][2] = 0
+        p26 = numpy.ones((2, 3), int)
+        p26[0][2] = 0
+        p26[1][0] = 0
         self.pieces.append(p26)
 
         p27 = numpy.ones((3, 3), int)
         p27[0][0] = 0
         p27[0][1] = 0
-        p27[2][0] = 0
-        p27[2][1] = 0
+        p27[1][0] = 0
+        p27[1][1] = 0
         self.pieces.append(p27)
 
         p28 = numpy.ones((3, 3), int)
         p28[0][1] = 0
         p28[0][2] = 0
-        p28[2][1] = 0
-        p28[2][2] = 0
+        p28[1][1] = 0
+        p28[1][2] = 0
         self.pieces.append(p28)
 
         p29 = numpy.ones((3, 3), int)
-        p29[0][0] = 0
-        p29[0][2] = 0
         p29[1][0] = 0
-        p29[1][2] = 0
+        p29[1][1] = 0
+        p29[2][0] = 0
+        p29[2][1] = 0
         self.pieces.append(p29)
 
         p30 = numpy.ones((3, 3), int)
-        p30[1][0] = 0
+        p30[1][1] = 0
         p30[1][2] = 0
-        p30[2][0] = 0
+        p30[2][1] = 0
         p30[2][2] = 0
         self.pieces.append(p30)
 
-        p31 = numpy.ones((1, 4), int)
+        p31 = numpy.ones((3, 3), int)
+        p31[0][0] = 0
+        p31[0][1] = 0
+        p31[2][0] = 0
+        p31[2][1] = 0
         self.pieces.append(p31)
 
-        p32 = numpy.ones((4, 1), int)
+        p32 = numpy.ones((3, 3), int)
+        p32[0][1] = 0
+        p32[0][2] = 0
+        p32[2][1] = 0
+        p32[2][2] = 0
         self.pieces.append(p32)
 
-        p33 = numpy.ones((1, 5), int)
+        p33 = numpy.ones((3, 3), int)
+        p33[0][0] = 0
+        p33[0][2] = 0
+        p33[1][0] = 0
+        p33[1][2] = 0
         self.pieces.append(p33)
 
-        p34 = numpy.ones((5, 1), int)
+        p34 = numpy.ones((3, 3), int)
+        p34[1][0] = 0
+        p34[1][2] = 0
+        p34[2][0] = 0
+        p34[2][2] = 0
         self.pieces.append(p34)
+
+        p35 = numpy.ones((1, 4), int)
+        self.pieces.append(p35)
+
+        p36 = numpy.ones((4, 1), int)
+        self.pieces.append(p36)
+
+        p37 = numpy.ones((1, 5), int)
+        self.pieces.append(p37)
+
+        p38 = numpy.ones((5, 1), int)
+        self.pieces.append(p38)
 
         if type == 'plus':
             # add other pieces
