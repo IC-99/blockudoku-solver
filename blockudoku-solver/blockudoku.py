@@ -171,6 +171,7 @@ class Blockudoku:
         malus_islands = 50
         malus_lakes = 50
         bonus_square = 20
+        future_rate = 0.5
         
         for i in range(9):
             for j in range(9):
@@ -274,6 +275,38 @@ class Blockudoku:
         eval -= self.lakes(deepcopy(board)) * malus_lakes
 
         return eval
+
+    def future_eval(self, board = None):
+        if board.__class__ == None.__class__:
+            board = self.board
+
+        pieces = self.piece_set.get_set()
+        future_eval = 0
+        future_rate = 0.5
+        for p in pieces:
+            future_eval += self.find_future_place(p, deepcopy(board))[1] / len(pieces)
+
+        return future_eval * future_rate
+
+    def find_future_place(self, piece, board = None):
+        if board.__class__ == None.__class__:
+            board = self.board
+
+        position = None
+        max_eval = -2000
+        
+        for i in range(9):
+            for j in range(9):
+                if self.placeable_in_position(piece, i, j, board):
+                    new_board = deepcopy(board)
+                    self.place(piece, i, j, new_board)
+                    eval = self.eval(new_board)
+                    if eval > max_eval:
+                        position = (i, j)
+                        max_eval = eval
+
+        return (position, max_eval)
+    
     
     def find_place(self, piece, board = None):
         if board.__class__ == None.__class__:
@@ -287,19 +320,20 @@ class Blockudoku:
                 if self.placeable_in_position(piece, i, j, board):
                     new_board = deepcopy(board)
                     self.place(piece, i, j, new_board)
-                    eval = self.eval(new_board)
+                    eval = self.eval(deepcopy(new_board)) + self.future_eval(deepcopy(new_board))
+                    #print('valutazione attuale:', eval)
                     if eval > max_eval:
                         position = (i, j)
                         max_eval = eval
 
         print('valutazione:', max_eval)
-        return position
+        return (position, max_eval)
 
     def find_and_place(self, piece, board = None):
         if board.__class__ == None.__class__:
             board = self.board
         
-        position = self.find_place(piece, board)
+        position = self.find_place(piece, board)[0]
         if position == None:
             return False
         start_i, start_j = position
@@ -313,7 +347,7 @@ class Blockudoku:
             p = self.piece_set.get_set()[randint(0, 38)]
             print('posizionando: ')
             print(p)
-            self.show_board()
+            #self.show_board()
             if not self.find_and_place(p):
                 break
             self.check()
@@ -322,6 +356,11 @@ class Blockudoku:
         print('piazzati', placed, 'pezzi')
 
 if __name__ == "__main__":
+    grid = numpy.zeros((9, 9), int)
+    lst = [[1, 0, 0, 1, 1, 0, 0, 0, 0], [1, 0, 0, 1, 1, 1, 1, 0, 0], [1, 1, 1, 1, 1, 1, 1, 0, 0], [1, 0, 0, 0, 0, 0, 1, 0, 0], [1, 0, 0, 0, 1, 0, 0, 0, 0], [0, 0, 1, 0, 1, 0, 1, 0, 0], [0, 0, 1, 1, 1, 1, 1, 0, 1], [0, 0, 0, 1, 1, 0, 0, 0, 1], [0, 0, 0, 0, 1, 1, 1, 1, 1]]
+    for i in range(9):
+        for j in range(9):
+            grid[i][j] = lst[i][j]
     grid = numpy.zeros((9, 9), int)
     blockudoku = Blockudoku(grid)
     pieces = blockudoku.piece_set.get_set()
