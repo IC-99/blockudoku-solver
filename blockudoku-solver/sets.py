@@ -1,7 +1,8 @@
 from copy import deepcopy
 import numpy
+from numpy.random import randint
 
-class PieceSets:
+class PieceSet:
 
     def __init__(self, type = 'normal') -> None:
         self.pieces = []
@@ -192,6 +193,8 @@ class PieceSets:
             # add other pieces
             pass
 
+    def get_one(self):
+        return self.pieces[randint(0, len(self.pieces))]
         
     def get_set(self):
         return self.pieces
@@ -199,4 +202,3 @@ class PieceSets:
     def print(self):
         for p in self.pieces:
             print(p)
-

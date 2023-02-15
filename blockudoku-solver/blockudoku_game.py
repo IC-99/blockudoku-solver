@@ -1,5 +1,5 @@
 from copy import deepcopy
-from sets import PieceSets
+from sets import PieceSet
 from board import Board
 import numpy
 from numpy.random import randint
@@ -7,13 +7,13 @@ import matplotlib.pyplot as plt
 
 class Blockudoku:
 
-    def __init__(self, board = None, piece_set = None) -> None:
+    def __init__(self, board: Board = None, piece_set: PieceSet = None) -> None:
         if board.__class__ == None.__class__:
             board = Board()
         self.board = board
         
         if piece_set.__class__ == None.__class__:
-            piece_set = PieceSets()
+            piece_set = PieceSet()
         
         self.piece_set = piece_set
     
@@ -23,35 +23,54 @@ class Blockudoku:
     def show(self):
         self.board.show_board()
 
-    def simulate(self):
-        placed = 0
-        self.board.print_board()
+    def get_piece(self):
+        return self.piece_set.get_one()
+
+    def end(self, piece):
+        return not self.board.placeable(piece)
+
+    def placeable_in_position(self, piece, i, j):
+        return self.board.placeable_in_position(piece, i, j)
+    
+    def place(self, piece, i, j):
+        if self.placeable_in_position(piece, i, j):
+            self.board.place(piece, i, j)
+            return True
+        return False
+
+    def update(self):
+        return self.board.check()
+
+    def play(self):
+        placed = 1
+        points = 0
+        print('inizio')
 
         while True:
-            print('mossa', placed)
+            self.print()
+            print('mossa', placed, 'punti:', points)
 
-            p = self.piece_set.get_one()
+            piece = self.get_piece()
             print('posizionando: ')
-            print(p)
+            print(piece)
 
-            #self.show_board()
-
-            if not self.board.placeable(p):
+            if self.end(piece):
                 break
+
+            self.show()
 
             while True:
                 i = int(input('inserisci riga:'))
                 j = int(input('inserisci colonna:'))
-                if self.board.placeable_in_position(p, i, j):
-                    self.board.place(p, i, j)
+                if self.place(piece, i, j):
                     break
                 else:
                     print('posizione non valida')
 
-            self.board.check()
-            self.board.print_board()
+            points += self.update()
             placed += 1
-        print('partita terminata. piazzati', placed, 'pezzi')
+
+        print('partita terminata. piazzati', placed - 1, 'pezzi', 'punteggio:', points)
 
 if __name__ == "__main__":
     grid = numpy.zeros((9, 9), int)
@@ -63,5 +82,4 @@ if __name__ == "__main__":
 
     blockudoku = Blockudoku(board=Board(grid))
     
-    print('inizio')
-    blockudoku.simulate()
+    blockudoku.play()
