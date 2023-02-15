@@ -28,6 +28,8 @@ class Board:
                 if piece[i][j] == 1:
                     if start_i + i > 8 or start_j + j > 8:
                         return False
+                    if start_i + i < 0 or start_j + j < 0:
+                        return False
                     if self.grid[start_i + i][start_j + j] == 1:
                         return False
         return True
