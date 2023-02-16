@@ -16,6 +16,8 @@ class Blockudoku:
             piece_set = PieceSet()
         
         self.piece_set = piece_set
+
+        self.points = 0
     
     def print(self):
         self.board.print_board()
@@ -38,17 +40,25 @@ class Blockudoku:
             return True
         return False
 
+    def place_three(self, pieces, positions):
+        for i in range(3):
+            if self.placeable_in_position(pieces[i], positions[i][0], positions[i][1]):
+                self.board.place(pieces[i], positions[i][0], positions[i][1])
+                self.update()
+            else:    
+                print('posizione non valida')
+                return False
+
     def update(self):
-        return self.board.check()
+        self.points += self.board.check()
 
     def play(self):
         placed = 1
-        points = 0
         print('inizio')
 
         while True:
             self.print()
-            print('mossa', placed, 'punti:', points)
+            print('mossa', placed, 'punti:', self.points)
 
             piece = self.get_piece()
             print('posizionando: ')
@@ -67,10 +77,10 @@ class Blockudoku:
                 else:
                     print('posizione non valida')
 
-            points += self.update()
+            self.update()
             placed += 1
 
-        print('partita terminata. piazzati', placed - 1, 'pezzi', 'punteggio:', points)
+        print('partita terminata. piazzati', placed - 1, 'pezzi', 'punteggio:', self.points)
 
 if __name__ == "__main__":
     grid = numpy.zeros((9, 9), int)

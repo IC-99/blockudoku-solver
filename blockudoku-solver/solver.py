@@ -1,9 +1,6 @@
-from copy import deepcopy
 from blockudoku_game import Blockudoku
 from board import Board
 import numpy
-from numpy.random import randint
-import matplotlib.pyplot as plt
 
 class Solver:
 

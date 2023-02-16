@@ -1,4 +1,3 @@
-from copy import deepcopy
 import numpy
 from numpy.random import randint
 
@@ -177,17 +176,24 @@ class PieceSet:
         p34[2][2] = 0
         self.pieces.append(p34)
 
-        p35 = numpy.ones((1, 4), int)
+        p35 = numpy.ones((3, 3), int)
+        p35[0][0] = 0
+        p35[0][2] = 0
+        p35[2][0] = 0
+        p35[2][2] = 0
         self.pieces.append(p35)
 
-        p36 = numpy.ones((4, 1), int)
+        p36 = numpy.ones((1, 4), int)
         self.pieces.append(p36)
 
-        p37 = numpy.ones((1, 5), int)
+        p37 = numpy.ones((4, 1), int)
         self.pieces.append(p37)
 
-        p38 = numpy.ones((5, 1), int)
+        p38 = numpy.ones((1, 5), int)
         self.pieces.append(p38)
+
+        p39 = numpy.ones((5, 1), int)
+        self.pieces.append(p39)
 
         if type == 'plus':
             # add other pieces
@@ -195,6 +201,9 @@ class PieceSet:
 
     def get_one(self):
         return self.pieces[randint(0, len(self.pieces))]
+
+    def get_three(self):
+        return [self.get_one(), self.get_one(), self.get_one()]
         
     def get_set(self):
         return self.pieces
