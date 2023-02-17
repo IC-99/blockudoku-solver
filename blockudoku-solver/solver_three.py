@@ -104,7 +104,7 @@ class Solver:
                     new_board = Board(board.grid)
                     new_board.place(piece, i, j)
                     new_new_board = Board(new_board.grid)
-                    eval = self.eval(new_board) + self.future_eval(new_new_board)
+                    eval = self.eval(new_board) # + self.future_eval(new_new_board)
                     # print('valutazione attuale:', eval)
                     if eval > max_eval:
                         position = (i, j)
@@ -208,7 +208,7 @@ class Solver:
 
         while True:
             blockudoku.print()
-            blockudoku.show()
+            # blockudoku.show()
             print('mossa', placed, 'punti:', blockudoku.points)
 
             pieces_to_place = self.blockudoku.piece_set.get_three()
@@ -245,7 +245,7 @@ class Solver:
                     while True:
                         print('pezzo', i + 1)
                         index = int(input('inserisci ID pezzo:'))
-                        if index > 0 and index < len(blockudoku.piece_set.get_set()):
+                        if index > 0 and index <= len(blockudoku.piece_set.get_set()):
                             pieces_to_place.append(blockudoku.piece_set.get_set()[index - 1])
                             break
                         print('pezzo non disponibile')
@@ -291,15 +291,15 @@ if __name__ == "__main__":
            [0, 0, 0, 1, 1, 0, 0, 0, 1], \
            [0, 0, 0, 0, 1, 1, 1, 1, 1]]
 
-    lst = [[1, 0, 0, 0, 1, 0, 0, 0, 0], \
-           [1, 0, 0, 0, 1, 0, 0, 0, 0], \
-           [1, 0, 0, 1, 0, 1, 0, 0, 0], \
-           [1, 0, 0, 0, 1, 1, 0, 0, 0], \
-           [1, 0, 0, 0, 1, 0, 1, 0, 0], \
+    lst = [[0, 0, 0, 1, 1, 1, 1, 1, 0], \
+           [0, 0, 0, 0, 1, 0, 0, 1, 0], \
            [0, 0, 0, 0, 1, 0, 0, 0, 0], \
-           [0, 0, 0, 1, 0, 0, 1, 0, 0], \
-           [0, 0, 0, 0, 1, 0, 1, 1, 0], \
-           [0, 0, 0, 0, 1, 0, 0, 0, 0]]
+           [0, 1, 1, 0, 0, 0, 0, 0, 0], \
+           [0, 1, 0, 0, 0, 0, 0, 0, 0], \
+           [0, 1, 0, 0, 0, 0, 1, 1, 0], \
+           [0, 1, 1, 1, 1, 1, 1, 1, 0], \
+           [0, 0, 0, 1, 0, 0, 0, 0, 0], \
+           [0, 0, 0, 0, 0, 0, 0, 0, 0]]
 
     for i in range(9):
         for j in range(9):
@@ -307,7 +307,7 @@ if __name__ == "__main__":
     
     # grid = numpy.zeros((9, 9), int)
     board = Board(grid)
-    blockudoku = Blockudoku(board)
+    blockudoku = Blockudoku(board, 'plus')
     solver = Solver(blockudoku)
     
-    solver.solver()
+    solver.simulate()

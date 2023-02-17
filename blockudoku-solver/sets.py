@@ -196,8 +196,57 @@ class PieceSet:
         self.pieces.append(p39)
 
         if type == 'plus':
-            # add other pieces
-            pass
+            p40 = numpy.ones((2, 2), int)
+            p40[0][0] = 0
+            p40[1][1] = 0
+            self.pieces.append(p40)
+
+            p41 = numpy.ones((2, 2), int)
+            p41[0][1] = 0
+            p41[1][0] = 0
+            self.pieces.append(p41)
+
+            p42 = numpy.zeros((3, 3), int)
+            p42[0][2] = 1
+            p42[1][1] = 1
+            p42[2][0] = 1
+            self.pieces.append(p42)
+
+            p43 = numpy.zeros((3, 3), int)
+            p43[0][0] = 1
+            p43[1][1] = 1
+            p43[2][2] = 1
+            self.pieces.append(p43)
+
+            p44 = numpy.zeros((4, 4), int)
+            p44[0][3] = 1
+            p44[1][2] = 1
+            p44[2][1] = 1
+            p44[3][0] = 1
+            self.pieces.append(p44)
+
+            p45 = numpy.zeros((4, 4), int)
+            p45[0][0] = 1
+            p45[1][1] = 1
+            p45[2][2] = 1
+            p45[3][3] = 1
+            self.pieces.append(p45)
+            
+            p46 = numpy.ones((3, 2), int)
+            p46[1][0] = 0
+            self.pieces.append(p46)
+
+            p47 = numpy.ones((3, 2), int)
+            p47[1][1] = 0
+            self.pieces.append(p47)
+
+            p48 = numpy.ones((2, 3), int)
+            p48[0][1] = 0
+            self.pieces.append(p48)
+
+            p49 = numpy.ones((2, 3), int)
+            p49[1][1] = 0
+            self.pieces.append(p49)
 
     def get_one(self):
         return self.pieces[randint(0, len(self.pieces))]

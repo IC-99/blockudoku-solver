@@ -7,15 +7,16 @@ import matplotlib.pyplot as plt
 
 class Blockudoku:
 
-    def __init__(self, board: Board = None, piece_set: PieceSet = None) -> None:
+    def __init__(self, board: Board = None, type: str = 'normal') -> None:
         if board.__class__ == None.__class__:
             board = Board()
         self.board = board
         
-        if piece_set.__class__ == None.__class__:
-            piece_set = PieceSet()
+        piece_set = PieceSet(type)
         
         self.piece_set = piece_set
+        self.piece_set.print()
+        print(len(self.piece_set.get_set()))
 
         self.points = 0
     
