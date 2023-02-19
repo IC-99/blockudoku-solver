@@ -1,7 +1,7 @@
-from copy import deepcopy
 import numpy
+from numpy.random import randint
 
-class PieceSets:
+class PieceSet:
 
     def __init__(self, type = 'normal') -> None:
         self.pieces = []
@@ -100,78 +100,159 @@ class PieceSets:
         p22[1][2] = 0
         self.pieces.append(p22)
 
-        p23 = numpy.ones((3, 3), int)
+        p23 = numpy.ones((3, 2), int)
         p23[0][0] = 0
-        p23[0][1] = 0
-        p23[1][0] = 0
-        p23[1][1] = 0
+        p23[2][1] = 0
         self.pieces.append(p23)
 
-        p24 = numpy.ones((3, 3), int)
+        p24 = numpy.ones((3, 2), int)
         p24[0][1] = 0
-        p24[0][2] = 0
-        p24[1][1] = 0
-        p24[1][2] = 0
+        p24[2][0] = 0
         self.pieces.append(p24)
 
-        p25 = numpy.ones((3, 3), int)
-        p25[1][0] = 0
-        p25[1][1] = 0
-        p25[2][0] = 0
-        p25[2][1] = 0
+        p25 = numpy.ones((2, 3), int)
+        p25[0][0] = 0
+        p25[1][2] = 0
         self.pieces.append(p25)
 
-        p26 = numpy.ones((3, 3), int)
-        p26[1][1] = 0
-        p26[1][2] = 0
-        p26[2][1] = 0
-        p26[2][2] = 0
+        p26 = numpy.ones((2, 3), int)
+        p26[0][2] = 0
+        p26[1][0] = 0
         self.pieces.append(p26)
 
         p27 = numpy.ones((3, 3), int)
         p27[0][0] = 0
         p27[0][1] = 0
-        p27[2][0] = 0
-        p27[2][1] = 0
+        p27[1][0] = 0
+        p27[1][1] = 0
         self.pieces.append(p27)
 
         p28 = numpy.ones((3, 3), int)
         p28[0][1] = 0
         p28[0][2] = 0
-        p28[2][1] = 0
-        p28[2][2] = 0
+        p28[1][1] = 0
+        p28[1][2] = 0
         self.pieces.append(p28)
 
         p29 = numpy.ones((3, 3), int)
-        p29[0][0] = 0
-        p29[0][2] = 0
         p29[1][0] = 0
-        p29[1][2] = 0
+        p29[1][1] = 0
+        p29[2][0] = 0
+        p29[2][1] = 0
         self.pieces.append(p29)
 
         p30 = numpy.ones((3, 3), int)
-        p30[1][0] = 0
+        p30[1][1] = 0
         p30[1][2] = 0
-        p30[2][0] = 0
+        p30[2][1] = 0
         p30[2][2] = 0
         self.pieces.append(p30)
 
-        p31 = numpy.ones((1, 4), int)
+        p31 = numpy.ones((3, 3), int)
+        p31[0][0] = 0
+        p31[0][1] = 0
+        p31[2][0] = 0
+        p31[2][1] = 0
         self.pieces.append(p31)
 
-        p32 = numpy.ones((4, 1), int)
+        p32 = numpy.ones((3, 3), int)
+        p32[0][1] = 0
+        p32[0][2] = 0
+        p32[2][1] = 0
+        p32[2][2] = 0
         self.pieces.append(p32)
 
-        p33 = numpy.ones((1, 5), int)
+        p33 = numpy.ones((3, 3), int)
+        p33[0][0] = 0
+        p33[0][2] = 0
+        p33[1][0] = 0
+        p33[1][2] = 0
         self.pieces.append(p33)
 
-        p34 = numpy.ones((5, 1), int)
+        p34 = numpy.ones((3, 3), int)
+        p34[1][0] = 0
+        p34[1][2] = 0
+        p34[2][0] = 0
+        p34[2][2] = 0
         self.pieces.append(p34)
 
-        if type == 'plus':
-            # add other pieces
-            pass
+        p35 = numpy.ones((3, 3), int)
+        p35[0][0] = 0
+        p35[0][2] = 0
+        p35[2][0] = 0
+        p35[2][2] = 0
+        self.pieces.append(p35)
 
+        p36 = numpy.ones((1, 4), int)
+        self.pieces.append(p36)
+
+        p37 = numpy.ones((4, 1), int)
+        self.pieces.append(p37)
+
+        p38 = numpy.ones((1, 5), int)
+        self.pieces.append(p38)
+
+        p39 = numpy.ones((5, 1), int)
+        self.pieces.append(p39)
+
+        if type == 'plus':
+            p40 = numpy.ones((2, 2), int)
+            p40[0][0] = 0
+            p40[1][1] = 0
+            self.pieces.append(p40)
+
+            p41 = numpy.ones((2, 2), int)
+            p41[0][1] = 0
+            p41[1][0] = 0
+            self.pieces.append(p41)
+
+            p42 = numpy.zeros((3, 3), int)
+            p42[0][2] = 1
+            p42[1][1] = 1
+            p42[2][0] = 1
+            self.pieces.append(p42)
+
+            p43 = numpy.zeros((3, 3), int)
+            p43[0][0] = 1
+            p43[1][1] = 1
+            p43[2][2] = 1
+            self.pieces.append(p43)
+
+            p44 = numpy.zeros((4, 4), int)
+            p44[0][3] = 1
+            p44[1][2] = 1
+            p44[2][1] = 1
+            p44[3][0] = 1
+            self.pieces.append(p44)
+
+            p45 = numpy.zeros((4, 4), int)
+            p45[0][0] = 1
+            p45[1][1] = 1
+            p45[2][2] = 1
+            p45[3][3] = 1
+            self.pieces.append(p45)
+            
+            p46 = numpy.ones((3, 2), int)
+            p46[1][0] = 0
+            self.pieces.append(p46)
+
+            p47 = numpy.ones((3, 2), int)
+            p47[1][1] = 0
+            self.pieces.append(p47)
+
+            p48 = numpy.ones((2, 3), int)
+            p48[0][1] = 0
+            self.pieces.append(p48)
+
+            p49 = numpy.ones((2, 3), int)
+            p49[1][1] = 0
+            self.pieces.append(p49)
+
+    def get_one(self):
+        return self.pieces[randint(0, len(self.pieces))]
+
+    def get_three(self):
+        return [self.get_one(), self.get_one(), self.get_one()]
         
     def get_set(self):
         return self.pieces
@@ -179,4 +260,3 @@ class PieceSets:
     def print(self):
         for p in self.pieces:
             print(p)
-
